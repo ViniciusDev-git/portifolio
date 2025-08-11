@@ -1,0 +1,441 @@
+/* Advanced Visual Effects CSS */
+
+/* Cursor personalizado */
+.custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--evolua-orange);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+}
+
+.cursor-ring {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--evolua-orange);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.custom-cursor.cursor-hover .cursor-ring {
+    width: 60px;
+    height: 60px;
+    border-color: var(--evolua-blue);
+    opacity: 0.8;
+}
+
+.custom-cursor.cursor-hover .cursor-dot {
+    background: var(--evolua-blue);
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Grid de fundo animado */
+.background-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.03;
+}
+
+.grid-line {
+    position: absolute;
+    background: linear-gradient(to bottom, transparent, var(--evolua-orange), transparent);
+    width: 1px;
+    height: 100%;
+    animation: gridPulse 4s ease-in-out infinite;
+}
+
+.grid-line.horizontal {
+    background: linear-gradient(to right, transparent, var(--evolua-orange), transparent);
+    width: 100%;
+    height: 1px;
+    animation: gridPulseHorizontal 5s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.1; transform: scaleY(1); }
+    50% { opacity: 0.3; transform: scaleY(1.1); }
+}
+
+@keyframes gridPulseHorizontal {
+    0%, 100% { opacity: 0.1; transform: scaleX(1); }
+    50% { opacity: 0.3; transform: scaleX(1.1); }
+}
+
+/* Partículas flutuantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.tech-particle {
+    position: absolute;
+    opacity: 0.6;
+    animation: float 8s ease-in-out infinite;
+}
+
+.tech-particle.dot {
+    width: 4px;
+    height: 4px;
+    background: var(--evolua-orange);
+    border-radius: 50%;
+}
+
+.tech-particle.square {
+    width: 6px;
+    height: 6px;
+    background: var(--evolua-blue);
+    transform: rotate(45deg);
+}
+
+.tech-particle.triangle {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 6px solid var(--evolua-orange);
+}
+
+.tech-particle.hex {
+    width: 8px;
+    height: 8px;
+    background: var(--evolua-blue);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% { 
+        transform: translateY(-20px) rotate(90deg);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateY(-10px) rotate(180deg);
+        opacity: 0.8;
+    }
+    75% { 
+        transform: translateY(-30px) rotate(270deg);
+        opacity: 0.4;
+    }
+}
+
+/* Chuva de código */
+.code-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.code-drop {
+    position: absolute;
+    color: var(--evolua-orange);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    opacity: 0.4;
+    animation: codeFall 5s linear forwards;
+}
+
+@keyframes codeFall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Formas que se transformam */
+.morph-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--evolua-orange), var(--evolua-blue));
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: inherit;
+}
+
+/* Efeito de scan */
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--evolua-orange), transparent);
+    transition: top 1s ease;
+    z-index: 10;
+}
+
+/* Efeito hologram */
+.hologram-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 107, 53, 0.1) 50%,
+        transparent 70%
+    );
+    opacity: 1;
+    transition: opacity 2s ease;
+    animation: hologramShift 2s ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes hologramShift {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Efeito glitch */
+.glitch {
+    position: relative;
+    animation: glitchAnimation 0.2s ease-in-out;
+}
+
+@keyframes glitchAnimation {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    animation: glitchBefore 0.2s ease-in-out;
+    color: var(--evolua-blue);
+    z-index: -1;
+}
+
+.glitch::after {
+    animation: glitchAfter 0.2s ease-in-out;
+    color: var(--evolua-orange);
+    z-index: -2;
+}
+
+@keyframes glitchBefore {
+    0% { transform: translate(0); }
+    50% { transform: translate(-2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitchAfter {
+    0% { transform: translate(0); }
+    50% { transform: translate(2px, 2px); }
+    100% { transform: translate(0); }
+}
+
+/* Efeito ripple */
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Skeleton loaders */
+.skeleton-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-card);
+    border-radius: inherit;
+    padding: 20px;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+.skeleton-header {
+    width: 60%;
+    height: 20px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s infinite;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.skeleton-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeleton-line {
+    height: 12px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s infinite;
+    border-radius: 4px;
+}
+
+.skeleton-line.short {
+    width: 70%;
+}
+
+@keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Animações de entrada avançadas */
+.service-card,
+.case-card {
+    transform: translateY(50px) rotateX(10deg);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.service-card.visible,
+.case-card.visible {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+}
+
+/* Hover effects 3D */
+.service-card:hover,
+.case-card:hover {
+    box-shadow: 
+        0 20px 40px rgba(255, 107, 53, 0.1),
+        0 0 20px rgba(255, 107, 53, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* Efeitos de neon sutil */
+.section-title .highlight {
+    position: relative;
+    text-shadow: 
+        0 0 5px var(--evolua-orange),
+        0 0 10px var(--evolua-orange),
+        0 0 15px var(--evolua-orange);
+    animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+    from {
+        text-shadow: 
+            0 0 5px var(--evolua-orange),
+            0 0 10px var(--evolua-orange),
+            0 0 15px var(--evolua-orange);
+    }
+    to {
+        text-shadow: 
+            0 0 2px var(--evolua-orange),
+            0 0 5px var(--evolua-orange),
+            0 0 8px var(--evolua-orange);
+    }
+}
+
+/* Efeitos de loading progressivo */
+section {
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Responsividade para efeitos */
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none;
+    }
+    
+    .background-grid {
+        opacity: 0.01;
+    }
+    
+    .floating-particles {
+        display: none;
+    }
+    
+    .code-rain {
+        display: none;
+    }
+    
+    .service-card:hover,
+    .case-card:hover {
+        transform: none;
+    }
+}
+
+/* Reduzir animações para usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    .custom-cursor,
+    .background-grid,
+    .floating-particles,
+    .code-rain,
+    .glitch {
+        display: none;
+    }
+    
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
