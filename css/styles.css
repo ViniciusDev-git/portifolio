@@ -1114,9 +1114,11 @@ button {
   }
   
   .cases-filters {
-    flex-direction: column;
-    align-items: center;
-  }
+    flex-direction: row; /* Alinha um ao lado do outro */
+    flex-wrap: wrap; /* Permite quebra de linha se não houver espaço */
+    justify-content: center; /* Centraliza os itens */
+    gap: var(--space-sm); /* Espaçamento menor entre os filtros */
+}
   
   .form-buttons {
     flex-direction: column;
@@ -1861,4 +1863,158 @@ button {
         right: 16px !important;
         text-align: center !important;
     }
+}
+
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-visual {
+        display: none; /* Oculta o Globo Wireframe WebGL */
+    }
+
+    .side-nav {
+        display: none; /* Oculta a navegação lateral */
+    }
+
+    .hero-text {
+        padding-top: var(--space-xxl);
+    }
+
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .hero-description {
+        font-size: var(--font-size-lg);
+    }
+
+    .hero-features {
+        justify-content: center;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: rgba(26, 26, 26, 0.95);
+        padding: var(--space-md) 0;
+        border-top: 1px solid var(--bg-medium);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: center;
+        padding: var(--space-sm) 0;
+    }
+
+    .nav-cta {
+        display: none; /* Oculta o botão de orçamento no mobile */
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Desativar animação 3D para service-card e case-card */
+    .service-card:hover {
+        transform: translateY(-8px); /* Mantém apenas a translação */
+        box-shadow: var(--shadow-xl);
+        border-color: var(--evolua-orange);
+    }
+
+    .case-card:hover {
+        transform: translateY(-8px); /* Mantém apenas a translação */
+        box-shadow: var(--shadow-xl);
+        border-color: var(--evolua-orange);
+    }
+
+    /* Remover contact-card */
+    .contact-grid {
+        grid-template-columns: 1fr; /* Altera para uma coluna */
+    }
+
+    .contact-info-container {
+        display: none; /* Oculta os contact-cards */
+    }
+}
+
+/* Para telas menores que 768px (smartphones) */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .hero-description {
+        font-size: var(--font-size-base);
+    }
+
+    .hero-features {
+    flex-direction: row; /* Alinha um ao lado do outro */
+    flex-wrap: wrap; /* Permite quebra de linha se não houver espaço */
+    justify-content: center; /* Centraliza os itens */
+    gap: var(--space-sm); /* Espaçamento menor entre os itens */
+  }
+
+  .feature-item {
+    flex-direction: column; /* Mantém o ícone acima do texto */
+    text-align: center;
+    gap: var(--space-xs);
+  }
+
+  .feature-icon {
+    font-size: var(--font-size-lg); /* Tamanho menor para o ícone */
+  }
+
+  .feature-text h3 {
+    font-size: var(--font-size-sm); /* Tamanho menor para o título */
+  }
+
+  .feature-text p {
+    font-size: var(--font-size-xs); /* Tamanho menor para a descrição */
+  }
+
+    .about-cards-grid,
+    .stats-grid,
+    .values-grid,
+    .team-skills-grid,
+    .services-grid,
+    .cases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .section-description {
+        font-size: var(--font-size-base);
+    }
+
+    .contact-form-container h3 {
+        font-size: var(--font-size-xl);
+    }
+    .contact-card {
+      display: none
+    }
+    .cases-filters {
+    flex-direction: row; /* Alinha um ao lado do outro */
+    flex-wrap: wrap; /* Permite quebra de linha se não houver espaço */
+    justify-content: center; /* Centraliza os itens */
+    gap: var(--space-sm); /* Espaçamento menor entre os filtros */
+  }
 }
