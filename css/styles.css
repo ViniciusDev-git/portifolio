@@ -7,6 +7,7 @@
   --evolua-blue-dark: #2C3E50;
   --evolua-blue-medium: #34495E;
   --evolua-blue-light: #3498DB;
+  --evolua-blue-light-ligh: #50b3f5;
   
   /* Backgrounds */
   --bg-dark: #1A1A1A;
@@ -122,7 +123,7 @@ button {
 }
 
 .highlight {
-  color: var(--evolua-orange);
+  color: var(--evolua-orange) !important;
 }
 
 .text-center {
@@ -403,7 +404,7 @@ button {
 }
 
 .title-line:nth-child(3) {
-  animation-delay: 0.4s;
+  animation-delay: 0.3s;
 }
 
 .hero-description {
@@ -1773,10 +1774,8 @@ button {
     display: inline-block;
     margin-top: var(--space-sm);
     padding: var(--space-xs) var(--space-sm);
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
+    background: linear-gradient(135deg, var(--evolua-blue-medium), var(--evolua-blue-dark));
     text-decoration: none;
-    border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -1785,10 +1784,10 @@ button {
 
 .case-link:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
-    border-color: var(--primary-color);
-    background: rgba(255, 107, 53, 0.1);
-    color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(106, 255, 101, 0.493);
+    border-color: var(--success);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--success);
 }
 
 .case-link:active {
