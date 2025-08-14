@@ -88,15 +88,29 @@ class TestimonialsCarousel {
                         <!-- Slides serão inseridos aqui -->
                     </div>
                     
-                    <button class="carousel-btn carousel-btn-prev" id="prev-btn" aria-label="Depoimento anterior">
+                    <!-- Setas para desktop -->
+                    <button class="carousel-btn carousel-btn-prev desktop-only" id="prev-btn" aria-label="Depoimento anterior">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                     
-                    <button class="carousel-btn carousel-btn-next" id="next-btn" aria-label="Próximo depoimento">
+                    <button class="carousel-btn carousel-btn-next desktop-only" id="next-btn" aria-label="Próximo depoimento">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Setas clean para mobile -->
+                    <button class="mobile-arrow mobile-arrow-left mobile-only" id="mobile-prev-btn" aria-label="Depoimento anterior">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="mobile-arrow mobile-arrow-right mobile-only" id="mobile-next-btn" aria-label="Próximo depoimento">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
@@ -189,12 +203,19 @@ class TestimonialsCarousel {
     }
     
     setupEventListeners() {
-        // Botões de navegação
+        // Botões de navegação desktop
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         
         if (prevBtn) prevBtn.addEventListener('click', () => this.prevSlide());
         if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
+        
+        // Botões de navegação mobile
+        const mobilePrevBtn = document.getElementById('mobile-prev-btn');
+        const mobileNextBtn = document.getElementById('mobile-next-btn');
+        
+        if (mobilePrevBtn) mobilePrevBtn.addEventListener('click', () => this.prevSlide());
+        if (mobileNextBtn) mobileNextBtn.addEventListener('click', () => this.nextSlide());
         
         // Indicadores
         const indicators = document.querySelectorAll('.carousel-indicator');
@@ -224,17 +245,33 @@ class TestimonialsCarousel {
     
     setupTouchEvents() {
         let startX = 0;
+        let startY = 0;
         let endX = 0;
+        let endY = 0;
+        let isHorizontalSwipe = false;
         
         this.container.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isHorizontalSwipe = false;
         });
         
         this.container.addEventListener('touchmove', (e) => {
-            e.preventDefault(); // Previne scroll vertical
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            // Determina se é um swipe horizontal
+            if (diffX > diffY && diffX > 10) {
+                isHorizontalSwipe = true;
+                e.preventDefault(); // Previne scroll apenas para swipes horizontais
+            }
         });
         
         this.container.addEventListener('touchend', (e) => {
+            if (!isHorizontalSwipe) return;
+            
             endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
             
@@ -354,4 +391,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Exportar para uso global
 window.TestimonialsCarousel = TestimonialsCarousel;
-

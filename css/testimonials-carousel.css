@@ -1,3 +1,71 @@
+/* Classes de visibilidade responsiva */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+}
+
+/* Estilos das setas mobile */
+.mobile-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.mobile-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.mobile-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.mobile-arrow-left {
+    left: 15px;
+}
+
+.mobile-arrow-right {
+    right: 15px;
+}
+
+.mobile-arrow svg {
+    color: var(--evolua-orange);
+    transition: color 0.3s ease;
+    width: 30px; /* Ajuste o tamanho do SVG conforme necessário */
+    height: 30px; /* Ajuste o tamanho do SVG conforme necessário */
+}
+
+.mobile-arrow:hover svg {
+    color: var(--evolua-orange-darker); /* Ou outra cor para hover */
+}
+
+/* Ajustes para o container do carrossel */
+.carousel-container {
+    position: relative;
+}
+
 /* ===== TESTIMONIALS CAROUSEL STYLES ===== */
 .testimonials-carousel {
     max-width: 1000px;
@@ -367,16 +435,15 @@
     }
     
     .carousel-btn {
-        width: 40px;
-        height: 40px;
+        display: none; /* Ocultar botões desktop em telas menores */
     }
     
     .carousel-btn-prev {
-        left: -10px;
+        left: 0px;
     }
     
     .carousel-btn-next {
-        right: -10px;
+        right: 0px;
     }
 }
 
@@ -387,10 +454,6 @@
     
     .testimonial-card {
         padding: var(--space-md);
-    }
-    
-    .carousel-btn {
-        display: none; /* Ocultar botões em telas muito pequenas */
     }
     
     .client-avatar {
@@ -447,7 +510,8 @@
 /* Estados de foco para acessibilidade */
 .carousel-btn:focus,
 .carousel-indicator:focus,
-.auto-play-toggle:focus {
+.auto-play-toggle:focus,
+.mobile-arrow:focus {
     outline: 2px solid var(--evolua-orange);
     outline-offset: 2px;
 }
@@ -467,4 +531,3 @@
     pointer-events: none;
     opacity: 0.5;
 }
-
